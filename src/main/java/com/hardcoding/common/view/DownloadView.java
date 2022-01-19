@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class DownloadView extends AbstractView{
+public class DownloadView extends AbstractView{  //공통모듈
 	
 	public DownloadView() {
 		log.info("DownloadView RealSpring2 생성자 ==");
@@ -39,13 +39,13 @@ public class DownloadView extends AbstractView{
 		
 		String userAgent = request.getHeader("User-Agent");
 		boolean ie = userAgent.indexOf("MSIE") > -1;
-		String fileName = null;
+		String fileName = (String)map.get("FILE_REALNAME");
 		
 		if(ie) {
-			fileName = URLEncoder.encode(file.getName(), "utf-8");
+			fileName = URLEncoder.encode(fileName, "utf-8");
 		}
 		else {
-			fileName = new String(file.getName().getBytes("UTF-8"), "8859_1");
+			fileName = new String(fileName.getBytes("UTF-8"), "8859_1");
 		}
 		
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");

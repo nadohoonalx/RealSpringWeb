@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Realweb2</title>
+    <title>Realweb3</title>
 
     <!-- Custom fonts for this template-->
     <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -101,7 +101,7 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>2. JSON by Map</span>
                 </a>
-                 <a class="nav-link " href="javascript:util.showload('/study/registForm">
+                 <a class="nav-link " href="javascript:util.showload('/nosesion/resistForm','3.회원가입');">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>3. 회원가입</span>
                 </a>
@@ -123,7 +123,8 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>8. 공통코드 </span>
                 </a>
-                	  
+
+				            	  
             </li>
                 
                 <!-- 
@@ -474,6 +475,7 @@
                         </div>
 
                        
+                       <hr>
 
                            
 
@@ -481,7 +483,7 @@
 
                         </div>
                     </div>
-
+	<hr>
                 </div>
                 <!-- /.container-fluid -->
 

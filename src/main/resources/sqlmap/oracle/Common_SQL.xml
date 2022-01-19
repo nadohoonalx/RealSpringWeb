@@ -11,5 +11,16 @@
     		 WHERE A.UPCD = #{upcd} <!--  <- map upcd 값임  -->
     	</select>
     	
-    	
+    	<select id="getUserInfo">
+    		/***************************/
+			/*회원 정보 등록  */
+			*SQL ID : common.getUserInfo */
+			/* *************************** */
+		
+		SELECT NAME
+			 , EMAIL
+			 , PASSWORD
+		  FROM MEMBERS A
+		 WHERE A.NAME = #{name}
+    	</select>
 </mapper>     

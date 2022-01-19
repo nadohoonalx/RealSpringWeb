@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+
+   <link rel="stylesheet" href="/node_modules/tui-grid/dist/tui-grid.min.css">
+   <script src="/node_modules/tui-grid/dist/tui-grid.min.js"></script>
+       
 <style>
 #doc {
     width:1370px;
@@ -25,6 +29,8 @@
 }
 </style>
 <script>
+
+
 $(function () {
     var obj = $("#dropzone");
     obj.on('dragenter', function (e) {
@@ -60,7 +66,7 @@ $(function () {
              for (var i = 0; i < files.length; i++) {
                 data.append('files', files[i]);
              }
-             var url = "<c:url value='/board/upload3'/>";
+             var url = "/board/upload3";                  
              $.ajax({
                 url: url,
                 method: 'POST',
@@ -69,34 +75,135 @@ $(function () {
                 processData: false,
                 contentType: false,
                 success: function(res) {
+                	console.dir(res);
                     alert("업로드가 완료되었습니다.");
                     F_FileMultiUpload_Callback(res.files);
+                    //util.requestSync("/board/selectgrid", null, "GET", result);
+                	
                 },
                 error: function(res) {
                     alert("업로드 중에 에러가 발생했습니다. 파일은 10M를 넘을 수 없습니다.");
-                    console.dir(res);
                 }
              });
          }
     }
     // 파일 멀티 업로드 Callback
     function F_FileMultiUpload_Callback(files) {
+    	// res -> Object
+    	// Object > files[]
+    	
+    	console.log("filemultialfdcal");
+    	console.dir(files);
         for(var i=0; i < files.length; i++) {
             var file = files[i];
-         //   $("#downloadzone").append("<a href='<c:url value='/board/getFileDownload'/>?filename="+ files[i] +"'>"+ files[i]+ "</a>\n");
-            $("#downloadzone").append("<a href='/board/getFileDownload?filename="+ files[i] +"'>"+ files[i]+ "</a>\n");    
+        	console.dir(file);
+        	//  $("#downloadzone").append("<a href='<c:url value='/board/getFileDownload'/>?filename="+ files[i] +"'>"+ files[i]+ "</a>\n");
+        $("#downloadzone").append("<a href='/board/getFileDownload?GROUP_KEY="
+        		+file.GROUP_KEY+"&FILE_KEY="+file.FILE_KEY+"'>"+file.FILE_REALNAME+"</a><br>");
+    
+        	
         }
     }
+    	
     function fnAlert(e, msg) {
         e.stopPropagation();
         alert(msg);
     }
 });
+
+const grid = new tui.Grid({
+    el: document.getElementById('grid'),
+   // data: [],
+    scrollX: false,
+    scrollY: false,
+    columns: [{
+        header: 'FILE_REALNAME',
+        name: 'FILE_REALNAME'
+    }, {
+        header: 'FILE_NAME',
+        name: 'FILE_NAME'
+    }, {
+        header: 'FILE_PATH',
+        name: 'FILE_PATH',
+        width : 100
+    }, {
+        header: 'FILE_LENGTH',
+        name: 'FILE_LENGTH',
+        align : 'right',
+        width : 100
+    } , {
+        header: 'GROUP_KEY',
+        name: 'GROUP_KEY',
+        align : 'center',
+        width : 400
+    }, {
+        header: 'FILE_KEY',
+        name: 'FILE_KEY',
+        align : 'right',
+        width : 30
+    }]
+});
+
+ 
+    
+    function btnSearch(){
+       
+    	   util.requestSync("/board/selectgrid", null, "GET", result);
+    	   alert('testHELLO');
+    }
+    
+    function result(res){
+    	grid.resetData(res); //const grid를 reset
+    }
+    
+    function btnSearch2(){
+        
+ 	   alert('btnSearch2');
+ 	}
+    
+   
+    
+    grid.on('click', (e) => {
+    	console.log(e)
+    	console.log(e.columnName + 'clicked!');
+    });
+    
+    grid.on('dblclick', (e) => {
+    	
+    	 
+    	 if(e.columnName == "FILE_REALNAME"){
+    		 console.log("HELLO");
+    		 var GROUP_KEY = grid.getValue(e.rowKey, "GROUP_KEY");
+    		 var FILE_KEY = grid.getValue(e.rowKey, "FILE_KEY");
+    		 console.log(GROUP_KEY);
+    		 console.log(FILE_KEY);
+    		 alert(GROUP_KEY);
+    		 console.log(FILE_KEY);
+    /* 		 
+    		location.href='/board/getFileDownload?GROUP_KEY="
+     		+GROUP_KEY+"&FILE_KEY="+FILE_KEY;
+     		
+     */	
+     	location.href = "/board/getFileDownload?GROUP_KEY=" + GROUP_KEY + "&FILE_KEY=" + FILE_KEY;      
+    	 /*   location.href="/board/getFileDownload?GROUP_KEY="
+    	        		+GROUP_KEY+"&FILE_KEY="+FILE_KEY+"/"; */
+    	 }
+    	 
+  
+    });
+
+
 </script>
 </head>
-<body>
-    <div id="dropzone">Drag & Drop Files Here</div>
-    ** 첨부된 파일 목록
-    <div id="downloadzone"></div>
+ <body>
+          <div id="dropzone">Drag & Drop Files Here</div>
+    
+     		 <br><br>** 첨부된 파일 목록<br>
+    		 <div id="downloadzone"></div>
+        <button onClick="btnSearch()">Search</button>
+        <button onClick="btnSearch2()">Search2</button>
+        
+        <hr>
+            <div id="grid"></div>
 </body>
 </html>

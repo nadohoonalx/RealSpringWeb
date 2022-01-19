@@ -8,12 +8,31 @@
 	<packaging>war</packaging>
 	<version>latest</version>
 	<properties>
-		<java-version>1.8</java-version>
+		<java-version>11</java-version>
 		<org.springframework-version>5.2.7.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
 	<dependencies>
+	
+	<dependency>
+    	<groupId>org.jsoup</groupId>
+    	<artifactId>jsoup</artifactId>
+    	<version>1.13.1</version>
+	</dependency>
+	
+	<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>4.1.2</version>
+		</dependency>
 	
 <dependency>
     <groupId>org.springframework</groupId>
@@ -22,6 +41,12 @@
 </dependency>
 	<!-- https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix -->
 
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+<dependency>
+    <groupId>org.quartz-scheduler</groupId>
+    <artifactId>quartz</artifactId>
+    <version>2.3.2</version>
+</dependency>
 	
 	
 <dependency>
@@ -43,7 +68,7 @@
     <version>3.5.7</version>
 </dependency>
 	
-	
+
 <dependency>
     <groupId>com.oracle.database.nls</groupId>
     <artifactId>orai18n</artifactId>
@@ -138,6 +163,12 @@
 			<version>1</version>
 		</dependency>
 				
+				<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-xml</artifactId>
+    <version>2.13.1</version>
+</dependency>
 				
 <dependency>
     <groupId>org.projectlombok</groupId>
@@ -158,7 +189,7 @@
     <version>1.9.7</version>
 		</dependency>
 				
-<dependency>
+ <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
     <version>2.12.4</version>
@@ -212,8 +243,12 @@
 		    <artifactId>log4jdbc-remix</artifactId>
 		    <version>0.2.7</version>
 		</dependency>
-
-
+	
+	<dependency>
+		<groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+	</dependency>
 		   
 	</dependencies>
     <build>

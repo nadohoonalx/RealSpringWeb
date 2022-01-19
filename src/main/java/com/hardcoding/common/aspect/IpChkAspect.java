@@ -1,9 +1,14 @@
 //package com.hardcoding.common.aspect;
 //
+//import java.util.ArrayList;
+//import java.util.Arrays;
 //import java.util.HashMap;
+//import java.util.List;
 //import java.util.Map;
 //
 //import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.http.HttpSession;
 //
 //import org.aspectj.lang.ProceedingJoinPoint;
 //import org.aspectj.lang.annotation.Around;
@@ -17,9 +22,9 @@
 //
 //import lombok.extern.slf4j.Slf4j;
 //
-////@Slf4j
-////@Aspect
-////@Component
+//@Slf4j
+//@Aspect
+//@Component
 //public class IpChkAspect {
 //		
 //	@Pointcut("execution(public * com.hardcoding.controller..*(..))")
@@ -29,6 +34,7 @@
 //	public Object trace(ProceedingJoinPoint joinPoint) throws Throwable {
 //		
 //		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+//		HttpServletResponse res = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getResponse();
 //		//바로 위에껄 를 하면 아까 지웠던 model, req, res && args(model, req, res) 넣었던거 
 //		
 //		
@@ -50,6 +56,18 @@
 //		log.info("1");
 //		Object result = new Object();
 //		try {
+//			List<String> list = new ArrayList(Arrays.asList("home", "loginForm","login"));
+//			if(!list.contains(joinPoint.getSignature().getName())) {
+//			HttpSession session = req.getSession(true); //jsp2.0;
+//			log.info("session id ::" + session.getId());
+//			if(session.getAttribute("userAuth") == null) {
+//				log.info("로그인 해야함!![" + req.getContextPath() + "/nosession/loginForm");
+//				res.sendRedirect( "/nosession/loginForm");
+//			}
+//			else {
+//				log.info("로그인 되었음..@!!!" + session.toString());
+//			}
+//			}//session.invalidate(); 이게 로그아웃 
 //			result = joinPoint.proceed();
 //			log.info("2");
 //			map.put("SERVICE", req.getServletPath().replace("/", "")); //요청서비스 ID

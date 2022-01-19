@@ -15,6 +15,7 @@
 	<aop:aspectj-autoproxy/>
 	<annotation-driven />
 
+	<context:component-scan base-package="com.hardcoding" />
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/node_modules/**" location="/node_modules/" />
@@ -38,7 +39,6 @@
 	</beans:bean>
 
 
-	<context:component-scan base-package="com.hardcoding" />
 	
 	
 	

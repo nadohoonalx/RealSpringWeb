@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Practice</title>
+    <title>RealSpringWeb3</title>
 
 
  <!-- Custom styles for this template-->
@@ -120,7 +120,7 @@
                 </a>
                 
                
-                <a class="nav-link " href="javascript:util.showLoad('/study/registForm' , '3. 회원가입');">
+                <a class="nav-link " href="javascript:util.showLoad('/nosession/registForm' , '3. 회원가입');">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>3. 회원가입</span>
                 </a>
@@ -139,11 +139,28 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>6. 글쓰기3 </span>
                 </a>
-                
+
+					<a class="nav-link " href="javascript:util.showLoad('/board/tuiGridForm','7. 토스트그리드');">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>7. 토스트그리드</span>
+                </a>
+                                
                   <a class="nav-link " href="javascript:util.showLoad('/home/commonCode', '8. 공통코드');">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>8. 공통코드 </span>
                   </a>
+                  
+                   <a class="nav-link " href="javascript:util.showLoad('/board/list', '9. 게시판');">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>9. 게시판 </span>
+                  </a>
+                  
+                   <a class="nav-link " href="javascript:util.showLoad('/board/sendMail', '9. 게시판');">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>10. 메일 </span>
+                  </a>
+                  
+                  <a href="/nosession/logout">로그아웃</a>
                 <!-- 
                 1. 클래스를 이용한 JSON 반환 <input type ="button" value="getMessage1" 
 							     onClick="javascript:getMessage(1)"/><br/>

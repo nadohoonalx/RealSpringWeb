@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="study">
+
+
+<select id="selectItems" parameterType="hashmap" resultType="hashmap">
+    SELECT *
+      FROM ITEM
+      WHERE ID = #{id}
+  </select>
+  
+  <insert id="insertItems" parameterType="hashmap">
+   INSERT INTO ITEM(ID, NAME)
+   VALUES(#{id},#{name})
+  </insert>
+  
+  <delete id="deleteItems" parameterType="hashmap">
+   DELETE FROM ITEM
+     WHERE ID = #{id}
+  </delete>
+
+
+
+<select id="existMembers" parameterType="hashmap" resultType="int">
+ 
+ 
+ 	<!-- /*********************************/ -->
+ 	<!-- /회원 정보 등록 여부 /
+ 	/SQL ID : study.existMembers/
+ 	/********************************* 이런식으로 관리를 해야한다. /
+     -->    SELECT COUNT(*) AS CNT
+          FROM MEMBERS
+         WHERE NAME = #{name}
+         
+</select>
+<!--컨트롤 스페이스 누르면됨  -->
+<insert id="insertMember">
+	<!-- *************************** -->
+	<!-- *회원 정보 등록  -->
+	<!-- SQL ID : study.insertMember  -->
+	<!-- *************************** -->
+	
+	INSERT INTO MEMBERS (NAME
+					   , EMAIL
+					   , PASSWORD
+					   , GENDER
+					   <if test = "hobby1 != null">
+					   , hobby1
+					   </if>
+					   <if test="hobby2 !=null">
+					   , hobby2
+					   </if>
+					   )
+				values ( #{name}
+						, #{email}
+						, #{password}
+						, #{gender}
+						<if test = "hobby1 != null">
+					   , #{hobby1}
+					   </if>
+					   <if test="hobby2 !=null">
+					   , #{hobby2}
+					   </if>
+						)
+
+</insert>
+    
+    
+    <select id="selectItems2" parameterType="map" resultType="hashmap">  <!--들어가고 나가는 형식 params,return  -->
+    	
+    		 SELECT   NAME AS CODE
+    		       ,  NAME AS VALUE
+    		   FROM   MEMBERS A
+    		
+    	</select>
+</mapper>

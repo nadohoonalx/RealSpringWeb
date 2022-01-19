@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @Repository //저장소랑 연결된 에노테이션
 @RequiredArgsConstructor
+
 public class CommonDao {
 	
 	final SqlSessionTemplate dao;
@@ -36,5 +37,10 @@ public class CommonDao {
 	
 	public int insert(String statement, Map<String, Object> condition) {
 		return dao.insert(statement, condition);
+	}
+
+	public List list() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -60,4 +60,53 @@
     		   FROM MEMBERS A
     		
     	</select>
+    	
+    <select id="getFileInfo" parameterType="hashmap" resultType="hashmap">
+    /***************************/
+	/*회원 정보 등록  */
+	/*SQL ID : board.getFileInfo */
+	/* *************************** */
+    
+    		SELECT * 
+    	      FROM FILES A
+    		 WHERE A.GROUP_KEY = #{GROUP_KEY}
+    		   AND A.FILE_KEY = #{FILE_KEY}
+    </select>
+    
+    <insert id="insertTableInfo" parameterType="hashmap">
+	/***************************/
+	/*회원 정보 등록  */
+	/*SQL ID : board.insertTableInfo */
+	/* *************************** */
+		
+	INSERT INTO FILES ( SEQ
+					 , CATEGORY
+					 , SUBJECT
+					 , CONTENT
+					 , REG_DATE
+					 , READCOUNT)     <!--SEQ , CATEGODY PK  -->
+				VALUES ( #{SEQ}
+					   , #{CATEGORY}
+					   , #{SUBJECT}
+					   , #{CONTENT}
+					   ,  SYSDATE
+					   , #{READCOUNT} 
+					   )
+
+</insert>
+    
+    <select id="selectTable" parameterType="map" resultType="map">  <!--들어가고 나가는 형식 params,return  -->
+    	
+    		 SELECT    SEQ
+					 , CATEGORY
+					 , SUBJECT
+					 , CONTENT
+					 , REG_DATE
+					 , READCOUNT
+    		   FROM	 TABLE T
+    		    WHERE T.SEQ = #{SEQ}
+    		   AND T.CATEGORY = #{CATEGORY}
+    		
+    	</select>
+   
 </mapper>

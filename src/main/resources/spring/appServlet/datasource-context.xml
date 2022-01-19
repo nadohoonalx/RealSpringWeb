@@ -26,9 +26,9 @@
    
    <bean id="dataSourceSpied" class="org.apache.commons.dbcp2.BasicDataSource">
       <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-      <property name="url" value="jdbc:oracle:thin:@localhost:1500:orclcdb"/>
-      <property name="username" value="study"/>
-      <property name="password" value="test"/>
+      <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+      <property name="username" value="dohoon"/>
+      <property name="password" value="dohoon2"/>
    </bean>
    
    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
